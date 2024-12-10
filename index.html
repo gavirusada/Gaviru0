@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaviru's Personal Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        header {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        nav {
+            background-color: rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+        nav a {
+            margin: 0 1.5rem;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ffd700;
+        }
+        .container {
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .social-icons {
+            margin-top: 1.5rem;
+        }
+        .social-icons a, .button {
+            margin: 0.5rem;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            padding: 0.8rem 1.7rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .social-icons a:hover, .button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(to right, #2575fc 0%, #6a11cb 100%);
+        }
+        form input, form textarea, form button {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        form button {
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            opacity: 0.9;
+        }
+        .calculator, .translator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .calculator input, .translator input, 
+        .translator select, .translator button {
+            margin: 0.5rem;
+            padding: 0.7rem;
+            width: 100%;
+            max-width: 300px;
+        }
+        footer {
+            background-color: rgba(0,0,0,0.1);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            backdrop-filter: blur(10px);
+        }
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav a {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+    <script>
+        function calculate() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const operator = document.getElementById('operator').value;
+            let result = 0;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('calc-result').textContent = 'කරුණාකර සියලුම තොරතුරු පුරවන්න';
+                return;
+            }
+
+            if (operator === '+') result = num1 + num2;
+            else if (operator === '-') result = num1 - num2;
+            else if (operator === '*') result = num1 * num2;
+            else if (operator === '/') {
+                if (num2 === 0) {
+                    document.getElementById('calc-result').textContent = 'ශුන්‍යෙන් බෙදිය නොහැක';
+                    return;
+                }
+                result = num1 / num2;
+            }
+
+            document.getElementById('calc-result').textContent = `ප්‍රතිඵලය: ${result.toFixed(2)}`;
+        }
+
+        function translate() {
+            const text = document.getElementById('text-to-translate').value;
+            const lang = document.getElementById('language').value;
+
+            const translations = {
+                en: 'Hello!',
+                si: 'ආයුබෝවන්!',
+                ta: 'வணக்கம்!'
+            };
+
+            document.getElementById('translate-result').textContent = translations[lang] || 'Translation not available.';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <h1>ගවිරුගේ පුද්ගලික වෙබ් අඩවිය</h1>
+        </div>
+    </header>
+    <nav>
+        <a href="#home">මුල් පිටුව</a>
+        <a href="#projects">ප්‍රජෙක්ට්ස්</a>
+        <a href="#contact">සම්බන්ධ වන්න</a>
+    </nav>
+    <div class="wrapper">
+        <section id="home" class="container">
+            <h2>මගේ ගැන</h2>
+            <p>අපි ගැන කෙටි හැඳින්වීමක් මෙතන ලියන්න. ඔබේ කලාත්මක ගමන සහ අරමුණු දැක්විය හැක.</p>
+            <div class="social-icons">
+                <a href="https://vm.tiktok.com/ZSjwDESes/" target="_blank">TikTok</a>
+                <a href="https://youtube.com/@gavirusandiptha_?si=4WSX5_HuEjujP-1W" target="_blank">YouTube</a>
+                <a href="https://www.facebook.com/share/18L5oKqShQ/" target="_blank">Facebook</a>
+            </div>
+        </section>
+        <section class="container calculator">
+            <h2>කැල්කිව්ලේටර්</h2>
+            <input type="number" id="num1" placeholder="අංක 1">
+            <select id="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">×</option>
+                <option value="/">÷</option>
+            </select>
+            <input type="number" id="num2" placeholder="අංක 2">
+            <button onclick="calculate()">ගණනය කරන්න</button>
+            <p id="calc-result">ප්‍රතිඵලය: </p>
+        </section>
+        <section class="container translator">
+            <h2>භාෂා පරිවර්තකය</h2>
+            <input type="text" id="text-to-translate" placeholder="පරිවර්තනයට පෙර පදය">
+            <select id="language">
+                <option value="en">English</option>
+                <option value="si">සිංහල</option>
+                <option value="ta">தமிழ்</option>
+            </select>
+            <button onclick="translate()">පරිවර්තනය කරන්න</button>
+            <p id="translate-result">ප්‍රතිඵලය: </p>
+        </section>
+        <section id="contact" class="container">
+            <h2>සම්බන්ධ වන්න</h2>
+            <p>Phone: <a href="tel:+94702521438" class="button">+94 70 252 1438</a></p>
+            <p>WhatsApp: <a href="https://wa.me/94702521438" target="_blank" class="button">Message on WhatsApp</a></p>
+            <p>Email: <a href="mailto:gavirusandiptha8@gmail.com" class="button">gavirusandiptha8@gmail.com</a></p>
+            <form action="mailto:gavirusandiptha8@gmail.com" method="post" enctype="text/plain">
+                <input type="text" name="name" placeholder="ඔබේ නම" required>
+                <input type="email" name="email" placeholder="ඔබේ ඊමේල් ලිපිනය" required>
+                <textarea name="review" rows="5" placeholder="ඔබේ සමාලෝචනය" required></textarea>
+                <button type="submit">සමාලෝචනය යවන්න</button>
+            </form>
+        </section>
+    </div>
+    <footer>
+        <p>© 2024 ගවිරුගේ පුද්ගලික වෙබ් අඩවිය. සියලු හිමිකම් ඇවිරිණි.</p>
+    </footer>
+</body>
+</html>
